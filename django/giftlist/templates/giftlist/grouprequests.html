@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="text-center">Group Request</h1>
+  <ul class="list-group">
+    {%  for group_request in group_requests %}
+    <li class="list-group-item d-flex align-items-center justify-content-between">{{group_request.from_user}} for {{group_request.to_group}} 
+      <div>
+        <a class="btn btn-success" href="{% url 'giftlist:accept_group_request' group_request.from_user.id group_request.to_group.id group_request.id %}">Approve</a>
+      </div> 
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

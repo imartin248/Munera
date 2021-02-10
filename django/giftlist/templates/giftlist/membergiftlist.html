@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="text-center">{{member}}'s Gift List</h1>
+
+  <ul class="list-group">
+    {%  for gift in gifts %}
+			<li class="list-group-item d-flex align-items-center justify-content-between">
+        <a href="#">{{gift.name}}</a>
+        {% if gift.selected == False %}
+        <a class="btn btn-success" href="{% url 'giftlist:addshoppinglist' member gift.id %}">Add</a>
+        {% endif %}
+      </li>
+		{% endfor %}
+  </ul>
+
+{% endblock %}

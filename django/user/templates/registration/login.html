@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  </head>
+  <body>
+    {% if form.errors %}
+    <h1>You did soumething wrong!</h1>
+    {% endif %}
+
+    {% if form.errors %}
+    {% endif %}
+
+    <h1>Gift List</h1>
+
+    <form class="signup-form" action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <h2>Login</h2>
+
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}
+      <label for="{{ form.password.id_for_label }}">Password:</label>
+      {{ form.password }}
+
+      <input type="submit" value="login">
+
+    </form>
+  </body>
+</html>

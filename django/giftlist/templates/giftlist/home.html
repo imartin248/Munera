@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">Home</h1>
+
+<h2>Group List</h2>
+
+<!-- Group List -->
+<ul class="list-group">
+  {% for group in groups %}
+  <li class="list-group-item"><a href="{% url 'giftlist:grouplist' group.group %}">{{group.group}}</a></li>
+  {% endfor %}
+</ul>
+
+<div class="row mt-3">
+  <div class="col-sm-12 col-md-6">
+    
+    <!-- Search Group Form -->
+    <form class="form mx-auto" method="Get" action="{% url 'giftlist:groupresults' %}">
+      {% csrf_token %}
+      <div class="form-group mb-2">
+        <input class="form-control" id="group_search_box" type="text" name="q" placeholder="Search Group">
+      </div>
+      <input type="submit" class="btn btn-secondary mb-2" value="Search">
+    </form>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    
+    <!-- Create Group Form -->
+    <form class="form mx-auto" action="{% url 'giftlist:creategroup' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group mb-2">
+        {{create_group_form.group_name}}
+      </div>
+      <input type="submit" class="btn btn-secondary mb-2" value="Create Group">
+    </form>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+    <h2>Gift List</h2>
+    <!-- Gift List -->
+    <ul class="list-group">
+      {%  for gift in gifts %}
+      <li class="list-group-item d-flex align-items-center justify-content-between"><a href="#">{{gift.name}}</a> <a
+          class="btn btn-danger" href="{% url 'giftlist:deletegift' gift.id %}">X</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <h2>Add Gift</h2>
+    <!-- Add Gift Form -->
+    <form action="{% url 'giftlist:home' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        {{add_gift_form.name.label_tag}}
+        {{add_gift_form.name}}
+      </div>
+      <div class="form-group">
+        {{add_gift_form.price.label_tag}}
+        {{add_gift_form.price}}
+      </div>
+      <div class="form-group">
+        {{add_gift_form.link.label_tag}}
+        {{add_gift_form.link}}
+      </div>
+      <input type="submit" class="btn btn-primary" value="Add">
+    </form>
+  </div>
+</div>
+{% endblock %}

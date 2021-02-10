@@ -1,0 +1,25 @@
+/*Nav*/
+.nav{
+  list-style-type: none;
+}
+
+.nav li{
+  display: inline;
+}
+
+/*Forms*/
+input[type=text],
+input[type=password] {
+  display: block;
+  margin: 1px;
+}
+
+/*General*/
+a{
+  text-decoration: none;
+  color: blue;
+}
+
+.check {
+  text-decoration: line-through;
+}

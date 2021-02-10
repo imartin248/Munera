@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">Group</h1>
+
+<h2>Memeber List</h2>
+<ul class="list-group">
+  {% for member in members %}
+  <li class="list-group-item"><a href="{% url 'giftlist:membergiftlist' member.member %}">{{member.member}}</a></li>
+  {% endfor %}
+</ul>
+<h2>Shopping List</h2>
+<ul class="list-group">
+  {% for gift in shoppinglist %}
+  <li class="list-group-item d-flex align-items-center justify-content-between">
+    <a href="">{{gift.gift}}</a>
+    <a class="btn btn-danger" href="{% url 'giftlist:deleteshoppinglist' gift.gift.id group %}">X</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
